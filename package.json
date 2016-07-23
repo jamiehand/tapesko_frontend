@@ -1,0 +1,31 @@
+{
+  "name": "tapesko_frontend",
+  "version": "1.0.0",
+  "description": "A frontend for Team Tapesko's search engine!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamiehand/tapesko_frontend.git"
+  },
+  "keywords": [
+    "node",
+    "search",
+    "engine",
+    "frontend",
+    "express",
+    "app"
+  ],
+  "author": "Jamie Hand",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jamiehand/tapesko_frontend/issues"
+  },
+  "homepage": "https://github.com/jamiehand/tapesko_frontend#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0"
+  }
+}
