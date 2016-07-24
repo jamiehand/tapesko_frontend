@@ -5,8 +5,7 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-var request = require('request');
-const URL_BASE = "http://1-dot-spatial-garage-109814.appspot.com/wikisearch?term="
+var makeQuery = require('./makeQuery.js');
 
 var start = function(){
   /* middleware */
@@ -23,26 +22,16 @@ var start = function(){
 }
 
 app.setUpRoutes = function(){
+  // TODO show a page w/ a search bar (and the note that the app currently can
+  // only search for one-word phrases at a time).
   this.get('/', function(app_request, app_response) {
-    var term = "javascript";
-    var url = URL_BASE + term;
-    request(url, function (error, response, body) {
-      if (!error && response.statusCode == 200) {
-        console.log(body);
-        app_response.send(body);
-      }
-    });
+    var term = "java";
+    makeQuery.makeQuery(term, app_response);
   });
 
   this.get('/search', function(app_request, app_response) {
     var term = app_request.query.term;
-    var url = URL_BASE + term;
-    request(url, function (error, response, body) {
-      if (!error && response.statusCode == 200) {
-        console.log(body);
-        app_response.send(body);
-      }
-    });
+    makeQuery.makeQuery(term, app_response);
   });
 };
 
