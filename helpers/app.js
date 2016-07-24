@@ -5,6 +5,8 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var request = require('request');
+const URL_BASE = "http://1-dot-spatial-garage-109814.appspot.com/wikisearch?term="
 
 var start = function(){
   /* middleware */
@@ -21,14 +23,27 @@ var start = function(){
 }
 
 app.setUpRoutes = function(){
-  this.get('/', function(request, response) {
-    response.send('hello world!');
+  this.get('/', function(app_request, app_response) {
+    var term = "javascript";
+    var url = URL_BASE + term;
+    request(url, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        console.log(body);
+        app_response.send(body);
+      }
+    });
   });
 
-  // TODO this
-  // this.post('/search', function(request, response) {
-  //   makeQuery.makeQuery(request, response);
-  // });
+  this.get('/search', function(app_request, app_response) {
+    var term = app_request.query.term;
+    var url = URL_BASE + term;
+    request(url, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        console.log(body);
+        app_response.send(body);
+      }
+    });
+  });
 };
 
 exports.start = start;
