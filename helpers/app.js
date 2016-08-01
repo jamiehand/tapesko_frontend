@@ -14,22 +14,22 @@ var start = function(){
   /* Parses the text as JSON and exposes the resulting object on req.body */
   app.use(bodyParser.json());
 
-  app.setUpRoutes();
+  setUpRoutes(app);
 
   app.listen(app.get('port'), function() {
     console.log('Node app is running on port', app.get('port'));
   });
 }
 
-app.setUpRoutes = function(){
+setUpRoutes = function(app){
   // TODO show a page w/ a search bar (and the note that the app currently can
   // only search for one-word phrases at a time).
-  this.get('/', function(app_request, app_response) {
+  app.get('/', function(app_request, app_response) {
     var term = "java";
     makeQuery.makeQuery(term, app_response);
   });
 
-  this.get('/search', function(app_request, app_response) {
+  app.get('/search', function(app_request, app_response) {
     var term = app_request.query.term;
     makeQuery.makeQuery(term, app_response);
   });
